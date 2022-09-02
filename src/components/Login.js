@@ -17,10 +17,10 @@ export const Login = () => {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({ user: user })
-            }).then(response => response.json())
-            .then(result => {
-                console.log(result);
-            });
+            })
+            const data = await response.json()
+            console.log(data)
+    }
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -38,7 +38,7 @@ export const Login = () => {
     useEffect(() => {
         console.log(formErrors);
         if(Object.keys(formErrors).length === 0 && isSubmit) {
-            // console.log(formValues)
+            console.log(formValues)
         }
     },[formErrors]);
 
@@ -57,12 +57,18 @@ export const Login = () => {
     }
         return (
         <div>
+            {Object.keys(formErrors).length === 0 && isSubmit 
+            ? 
+            (<div className='sign-in-success'> Signed in Successfully </div>)
+            :
+            (<div className='sign-in-prompt'> Please, Sign in </div>)
+            }
             <form onSubmit={handleSubmit}>
                 <input 
                     type='text' 
                     name='username' 
                     placeholder='username' 
-                    value={ formValues.username}
+                    value={formValues.username}
                     onChange={handleChange}
                     />
                     <div> {formErrors.username} </div>
@@ -70,7 +76,7 @@ export const Login = () => {
                     type='text' 
                     name='password' 
                     placeholder='password' 
-                    value={ formValues.password}
+                    value={formValues.password}
                     onChange={handleChange}
                     />
                     <div> {formErrors.password} </div>
@@ -78,5 +84,4 @@ export const Login = () => {
             </form>
         </div>
         )
-    }
 }

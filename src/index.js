@@ -5,57 +5,29 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { API_URL } from './api';
 import { Register } from './components';
 import { Login } from './components';
+import { Posts } from './components';
+import { Profile } from './components';
 
 
 const App = () => {
-    const [allPosts, setAllPosts] = useState([]);
-
-    useEffect(() => {
-        const getData = async() => {
-            await getAllPosts();
-            await Register();
-            await Login ();
-        }
-        getData();
-    }, []);
-
-    const getAllPosts = async() => {
-        const response = await fetch(`${API_URL}/posts`);
-        const result = await response.json();
-        setAllPosts(result.data.posts);
-        console.log(result.data.posts)
-    }
 
     return (
-        <div id='App'> 
-            <h1> Stranger's Things </h1>
+        <div> 
+            <h1> Welcome to Stranger's Things(get it?) </h1>
+            
             <nav> 
-                {/* <span onClick={Register}> Register </span>
-                <span> Profile </span>
-                <span> Posts </span>
-                <span onClick={Login}> Login </span>
-                <span> Logout </span> */}
-                <Link to='./register'> Register </Link>
-                <Link to='./login'> Login </Link>
+                <Link to='/me'> Profile </Link>
+                <Link to='/'> Posts </Link> 
+                <Link to='/register'> Register </Link>
+                <Link to='/login'> Login </Link>
+                <span> Logout </span> 
              </nav>
              <Routes>
+                <Route path='/me' element={<Profile />}> </Route>
                 <Route path='/register' element={<Register />}> </Route>
+                <Route path='/' element={<Posts />}> </Route>
                 <Route path='/login' element={<Login />}> </Route>
             </Routes>
-            <div>
-            {
-            allPosts.map((post, i) => {
-               return (
-                <ul key={i}>
-                    <li>{post.title}</li>
-                    <li>{post.description}</li>
-                    <li>{post.price}</li>
-                    <li>{post.messages}</li>
-               </ul>
-               )
-            })
-        }
-            </div>
         </div>
     )
 }

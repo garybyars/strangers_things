@@ -18,10 +18,9 @@ export const Register = () => {
             },
             body: JSON.stringify({ user: user })       
         })
-        .then(response => response.json())
-        .then(result => {
-            console.log(result);
-        })
+        const data = await response.json()
+        console.log(data)
+    } 
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -39,7 +38,7 @@ export const Register = () => {
     useEffect(() => {
         console.log(formErrors);
         if(Object.keys(formErrors).length === 0 && isSubmit) {
-            // console.log(formValues)
+            console.log(formValues)
         }
     },[formErrors]);
 
@@ -100,5 +99,5 @@ export const Register = () => {
                 <input type='submit' value='SUBMIT' />
             </form>
         </div>
-    )};
+    );
 };
