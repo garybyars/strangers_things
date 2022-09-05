@@ -1,9 +1,13 @@
 import { Register } from './Register';
-import { Login } from './Login';
-import { Posts } from './Posts';
 import { Profile } from './Profile';
+import { Posts } from './Posts';
+import { Login } from './Login';
+import { Logout } from './Logout';
+import { AddPosts } from './AddPosts';
 
 export { Register };
-export { Login };
-export { Posts };
 export { Profile };
+export { Posts };
+export { Login };
+export { Logout };
+export { AddPosts };

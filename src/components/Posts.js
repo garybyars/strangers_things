@@ -12,7 +12,7 @@ export const Posts = () => {
             setAllPosts(result.data.posts);
             console.log(result.data.posts)
         }
-        getAllPosts()
+        getAllPosts();
     },[])
     
     return (
